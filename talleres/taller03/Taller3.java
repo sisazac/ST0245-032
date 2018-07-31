@@ -115,9 +115,8 @@ public class Taller3 {
         if(str.length()==0){
             System.out.println(prefix);
         }else{
-            for(int i=0;i<str.length()-1;i++){
-                permutationAux(str.charAt(i)+prefix,str.substring(i+1));
-                permutationAux(str.charAt(i)+prefix,str.substring(0,i)+str.substring(i));
+            for(int i=0;i<str.length();i++){
+                permutationAux(str.charAt(i)+prefix,str.substring(0,i)+str.substring(i+1));
             }
         }
     }

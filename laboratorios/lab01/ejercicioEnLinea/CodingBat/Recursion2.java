@@ -40,5 +40,31 @@ public class Recursion2
         groupSum5(start+1,nums,target-nums[start]);
     }
 
+    public boolean splitArray(int[] nums) { 
+        return splitArrayAux(nums, 0, 0, 0); 
+    } 
 
+    public boolean splitArrayAux(int [] nums, int start, int first, int second){ 
+        if(start == nums.length){ 
+            return first == second;  
+        }else{ 
+            return splitArrayAux(nums, start + 1, first + nums[start], second) || 
+            splitArrayAux(nums, start + 1, first, second + nums[start]); 
+        } 
+    }
+
+    public boolean groupSumClump(int start, int[] nums, int target) {
+        if (start >= nums.length) { 
+            return target == 0; 
+        }
+        int sum = 0; 
+        int i; 
+        for (i = start; i < nums.length; i++) { 
+            if (nums[i] == nums[start]){ sum += nums[start];
+            }else{break; 
+            } 
+        } 
+        return groupSumClump(i, nums, target - sum) || 
+        groupSumClump(i, nums, target);
+    }
 }

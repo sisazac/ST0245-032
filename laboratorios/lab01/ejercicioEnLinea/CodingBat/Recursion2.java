@@ -60,8 +60,10 @@ public class Recursion2
         int sum = 0; 
         int i; 
         for (i = start; i < nums.length; i++) { 
-            if (nums[i] == nums[start]){ sum += nums[start];
-            }else{break; 
+            if (nums[i] == nums[start]){ 
+                sum += nums[start];
+            }else{
+                break; 
             } 
         } 
         return groupSumClump(i, nums, target - sum) || 

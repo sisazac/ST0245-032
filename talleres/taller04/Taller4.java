@@ -1,3 +1,4 @@
+
 /**
  *La clase Taller4 dos tiene como objetivo dar solución al taller4
  *
@@ -72,8 +73,8 @@ public class Taller4 {
      * @see <a href="https://es.wikipedia.org/wiki/Sucesi%C3%B3n_de_Fibonacci"> fibonnaci <a/>
      * @return el valor encontrado en long dada la posible cantidad de bits
      */
-    //public static long fibonacci(int n) { 
-        //if(n==0)return 0;
-        //return fibonacci(n-1) + fibonacci(n-2);
-        
+    public static long fibonacci(int n) { 
+        if(n<=1)return n;
+        return fibonacci(n-1) + fibonacci(n-2);
     }
+}

@@ -30,8 +30,8 @@ public class Recursion2
 
     public boolean groupSum5(int start, int[] nums, int target) {
         if(start>=nums.length) return target==0;
-        if (nums[start]%5==0){
-            if(start<nums.length-1 && nums[start+1]==1){
+        if(nums[start]%5==0){
+            if(start < nums.length-1 && nums[start+1]==1){
                 return groupSum5(start+2,nums,target-nums[start]);
             }
             return groupSum5(start+1,nums,target-nums[start]);
@@ -40,33 +40,31 @@ public class Recursion2
         groupSum5(start+1,nums,target-nums[start]);
     }
 
-    public boolean splitArray(int[] nums) { 
-        return splitArrayAux(nums, 0, 0, 0); 
-    } 
+    public boolean splitArray(int[] nums) {
+        return theRealSplit(nums,0,0,0);
+    }
 
-    public boolean splitArrayAux(int [] nums, int start, int first, int second){ 
-        if(start == nums.length){ 
-            return first == second;  
-        }else{ 
-            return splitArrayAux(nums, start + 1, first + nums[start], second) || 
-            splitArrayAux(nums, start + 1, first, second + nums[start]); 
-        } 
+    public boolean theRealSplit(int [] nums, int start, int first, int second){
+        if(start==nums.length) {
+            return first==second;
+        }else{
+            return theRealSplit(nums,start+1, first+nums[start],second) ||
+            theRealSplit(nums,start+1,first,second+nums[start]);
+        }
     }
 
     public boolean groupSumClump(int start, int[] nums, int target) {
-        if (start >= nums.length) { 
-            return target == 0; 
-        }
-        int sum = 0; 
-        int i; 
-        for (i = start; i < nums.length; i++) { 
-            if (nums[i] == nums[start]){ 
-                sum += nums[start];
+        if(start>=nums.length) return target==0;
+        int sum=0;
+        int i;
+        for(i=start;i<nums.length;i++){
+            if(nums[i]==nums[start]){
+                sum+=nums[start];
             }else{
-                break; 
-            } 
-        } 
-        return groupSumClump(i, nums, target - sum) || 
-        groupSumClump(i, nums, target);
+                break;
+            }
+        }
+        return groupSumClump(i,nums,target) ||
+        groupSumClump(i,nums,target-sum);
     }
 }

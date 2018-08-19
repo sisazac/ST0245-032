@@ -28,6 +28,11 @@ public class Recursion2
         groupNoAdj(start+2,nums,target-nums[start]);
     }
 
+    /* Title: groupSum5
+     * Author: Ulm, Gregor
+     * Date: March 28, 2013
+     * Taken from:http://gregorulm.com/codingbat-java-recursion-2/
+     */
     public boolean groupSum5(int start, int[] nums, int target) {
         if(start>=nums.length) return target==0;
         if(nums[start]%5==0){
@@ -40,10 +45,20 @@ public class Recursion2
         groupSum5(start+1,nums,target-nums[start]);
     }
 
+    /* Title: splitArray
+     * Author: Ulm, Gregor
+     * Date: March 28, 2013
+     * Taken from:http://gregorulm.com/codingbat-java-recursion-2/
+     */
     public boolean splitArray(int[] nums) {
         return theRealSplit(nums,0,0,0);
     }
 
+    /* Title: spltArray
+     * Author: Ulm, Gregor
+     * Date: March 28, 2013
+     * Taken from:http://gregorulm.com/codingbat-java-recursion-2/
+     */
     public boolean theRealSplit(int [] nums, int start, int first, int second){
         if(start==nums.length) {
             return first==second;

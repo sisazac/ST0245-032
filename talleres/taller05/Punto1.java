@@ -2,11 +2,25 @@
 /**
  * Write a description of class Punto1 here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Santiago Isaza Cadavid y Hamilton
+ * @version Agosto 2018
  */
 public class Punto1
 {
+
+    public static void main(String[] args){
+        for (int i = 10000; i <= 200000000; i = i + 10000){
+            int[] a = new int[i];
+            for (int j = 0; j < i; j++ ){
+                a[j] = j;
+            }
+            long start = System.currentTimeMillis();
+            insertionSort(a);
+            long fin = System.currentTimeMillis();       
+            System.out.println(fin-start);
+        }
+    }
+
     /**
      * @param array es un arreglo de números desordenados
      * El método insertionSort tiene la intención ordenar los números
@@ -26,8 +40,7 @@ public class Punto1
             int aux= array[a];
             array[a]= array[menor];
             array[menor]= aux;
-
         }
         return array;
-    }    
+    }  
 }

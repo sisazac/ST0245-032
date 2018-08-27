@@ -1,8 +1,8 @@
-
+﻿
 /**
  * Array2
- * @author Santiago Isaza Cdaavid y Hamilton Smith Gómez Osorio
- * @version Agosto 2018
+ * @author Santiago Isaza Cadavid and Hamilton Smith Gómez Osorio
+ * @version August 2018
  */
 public class Array2
 {

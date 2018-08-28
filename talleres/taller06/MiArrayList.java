@@ -1,4 +1,3 @@
-
 import java.util.Arrays;
 
 /**
@@ -47,8 +46,14 @@ public class MiArrayList {
     public void add(int e) {
         if(size<= elements.length){
             elements[size]= e;
-            size++;
+        }else{
+            int nuevosElements[]= new int[DEFAULT_CAPACITY*2];
+            for(int i=0;i<size;i++){
+                nuevosElements[i]= elements[i];
+            }
+            nuevosElements[size]= e;
         }
+        size++;
     }    
 
     /** 
@@ -57,24 +62,26 @@ public class MiArrayList {
      *
      */
     public int get(int i) throws Exception{
-        if( i>=0 && i< size ){
+        if( i>=0 && i<size ){
             return elements[i];
         }else{
-            throw new Exception("la i no es valida");
+            throw new Exception("la i no es válida");
         }
     }
 
-        /**
-         * @param index es la posicion en la cual se va agregar el elemento
-         * @param e el elemento a guardar
-         * Agrega un elemento e en la posición index de la lista
-         *
-         */
-        public void add(int index, int e) {
-        for(int i=size;i>index;i--){
-            elements[size]= elements[size-1];
+    /**
+     * @param index es la posicion en la cual se va agregar el elemento
+     * @param e el elemento a guardar
+     * Agrega un elemento e en la posición index de la lista
+     *
+     */
+    public void add(int index, int e) {
+        if(index>=0 && index<size){
+            for(int i=size;i>index;i--){
+                elements[size]= elements[size-1];
+            }
+            elements[index]= e;
         }
-        elements[index]= e;
     } 
 
     /**
@@ -84,6 +91,10 @@ public class MiArrayList {
      *
      */
     public void del(int index){
-        
+        if(index>=0 && index<size){
+            for(int i= index;i<size;i++){
+                elements[i]= elements[i+1];
+            }
+        }
     }
 }

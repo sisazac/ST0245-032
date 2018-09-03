@@ -33,7 +33,7 @@ public class Array3
     }
 
 
-      public int[] fix34(int[] nums) {
+    public int[] fix34(int[] nums) {
          int index=0;
          for(int i=0;i<nums.length;i++){
              if(nums[i]==3){
@@ -48,6 +48,23 @@ public class Array3
                 }
              }
           }
-      return nums;
-      }
+          return nums;
+     }
+    
+     public int maxSpan(int[] nums) {
+          int cont=0;
+          int cont2=0;
+          for(int i=0;i<nums.length;i++){
+              for(int j=nums.length-1;j>=0;j--){
+                  if(nums[i]==nums[j]) cont= (j-i)+1;
+                  if(cont>cont2){
+                      cont2=cont;
+                      cont=0;
+                  } 
+              }
+     
+          }   
+          return cont2;
+     }
+
 }

@@ -31,4 +31,23 @@ public class Array3
         }
         return arr;
     }
+
+
+      public int[] fix34(int[] nums) {
+         int index=0;
+         for(int i=0;i<nums.length;i++){
+             if(nums[i]==3){
+                for(int j=index;j<nums.length;j++){
+                    if(nums[j]==4){
+                    index= j;
+                    int aux= nums[j];
+                    nums[index]= nums[i+1];
+                    nums[i+1]= aux;
+                    break;
+                    }
+                }
+             }
+          }
+      return nums;
+      }
 }

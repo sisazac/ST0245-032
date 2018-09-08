@@ -66,5 +66,28 @@ public class Array3
           }   
           return cont2;
      }
+    
+    
+    /
+        Title: SquareUp CodingBat solution
+        Author: Elentok, O.
+        Date:  14 jul 2012
+        Code version: 1.0
+        Availability: https://github.com
+    /                                               Taken from https://bit.ly/2MUhkrA
+    
+    
+      public int[] squareUp(int n)
+      {
+          int[] arr = new int[n*n];
+	      int p;
+	      for(int i = 1; i <= n; i++){
+		      p = n * i - 1;
+		      for(int j = 1; j <= i; j++, p--){
+			      arr[p] = j;
+	          }
+          }
+	return arr;
+      }
 
 }

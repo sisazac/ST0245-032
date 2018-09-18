@@ -1,4 +1,3 @@
-
 import java.lang.IndexOutOfBoundsException; // Usar esto cuando se salga el índice
 // Una lista simplemente enlazada
 public class LinkedListMauricio{
@@ -48,36 +47,60 @@ public class LinkedListMauricio{
     // Inserta un dato en la posición index
     public void insert(int data, int index)
     {
-        if(index==0){
-            Node temp= first.next;
-            Node nuevo= new Node(data);
-            nuevo.next = temp;
-            first= nuevo;
-        }else{
-            Node temp= getNode(index-1);
-            Node nuevo= new Node(data);
-            nuevo.next= temp.next;
-            temp.next= nuevo;
+        try{
+            if(index==0){
+                Node temp= first.next;
+                Node nuevo= new Node(data);
+                nuevo.next = temp;
+                first= nuevo;
+                size++;
+            }else if(index>0){
+                Node temp= getNode(index-1);
+                Node nuevo= new Node(data);
+                nuevo.next= temp.next;
+                temp.next= nuevo;
+                size++;
+            }
+        }catch(Exception e){
+            System.out.println("Valor no permitido para la consulta");
         }
-        size++;
+
     }
     // Borra el dato en la posición index
-    public void remove(int index)
-    {
-        
-    }
+    public void remove(int index){
+        try{
+            if(index==size){
+                Node temp= getNode(index-1);
+                temp= null;
+                size--;
+            }else if (index==0){
+                Node temp= first.next;
+                first= temp;
+                size--;
+            }else if(index>0 && index<size){
+                Node temp= getNode(index-1);
+                Node temp2= getNode(index+1);
+                temp.next= temp2;
+                size--;
+            }
+        }catch(Exception e){
+            System.out.println("Valor no permitido para la consulta");
+        }
 
+    }
     // Verifica si está un dato en la lista
     public boolean contains(int data) {
-        Node nodoQueEstoyVisitando = first;
-        while (nodoQueEstoyVisitando != null) {
-            if (nodoQueEstoyVisitando.data == data){
-                return true;
+        try{
+            Node nodoQueEstoyVisitando = first;
+            while (nodoQueEstoyVisitando != null) {
+                if (nodoQueEstoyVisitando.data == data){
+                    return true;
+                }
+                nodoQueEstoyVisitando = nodoQueEstoyVisitando.next;
             }
-            nodoQueEstoyVisitando = nodoQueEstoyVisitando.next;
+        }catch(Exception e){
+            System.out.println("Valor no permitido");
         }
         return false;
     }
-
 }
-

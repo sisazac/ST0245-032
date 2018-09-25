@@ -17,8 +17,8 @@ public class smartInsertV2{
                 n = list.get(i);
                 if(data==n){
                     System.out.println("Sorry mate that is the wrong number");
-                    ok= false;
                     System.out.print("The last number of the array is: " + list.get(list.size()-1));
+                    ok = false;
                     break;
                 }
             }

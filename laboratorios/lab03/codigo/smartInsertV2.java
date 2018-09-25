@@ -9,7 +9,7 @@ public class smartInsertV2{
     }
 
     public static void smartInsert(ArrayList<Integer> list, int data){
-        int index= list.size()-1;
+        int index= list.size();
         int n=0;
         boolean ok=true;
         try{
@@ -18,12 +18,13 @@ public class smartInsertV2{
                 if(data==n){
                     System.out.println("Sorry mate that is the wrong number");
                     ok= false;
+                    System.out.print("The last number of the array is: " + list.get(list.size()-1));
                     break;
                 }
             }
             if(ok==true){
                 list.add(data);
-                System.out.println("The last number is added is:"+ list.get(list.size()-1));
+                System.out.println("The last number added is: "+ list.get(list.size()-1));
             }
         }catch(Exception e){
             System.out.println("Not allowed value");
@@ -40,5 +41,8 @@ public class smartInsertV2{
         ArrayList<Integer> array = new ArrayList<>();
         array.addAll(Arrays.asList(new Integer[] {2, 4, 6, 8}));
         smartInsert(array, 5);
+        ArrayList<Integer> array2 = new ArrayList<>();
+        array2.addAll(Arrays.asList(new Integer[] {3, 5, 6, 7, 8, 9}));
+        smartInsert(array2, 9);
     }
 }

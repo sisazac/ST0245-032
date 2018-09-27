@@ -3,6 +3,7 @@ import java.util.*;
  * Mall
  * 
  * @author Santiago Isaza Cadavid and Hamilton Smith Gómez Osorio
+ * 
  * @version September 2018
  */
 public class Mall
@@ -23,15 +24,10 @@ public class Mall
             Order order = orders.remove();
             int n=order.getNumber();
             System.out.print(order.getName() + " :");
-            while(n!=0 && fridges.size()!=0){
+            while(size!=0 && fridges.size()!=0){
                 Fridge temp= fridges.pop();
                 System.out.print(" "+temp.getCode()+"-"+temp.getData()+",");
                 n--;
-            }
-            System.out.println();
-            if(fridges.size()==0){
-                System.out.println("No more fridges");
-                break;
             }
         }
     }

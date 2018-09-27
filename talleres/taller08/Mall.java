@@ -26,7 +26,8 @@ public class Mall
             System.out.print(order.getName() + " :");
             while(size!=0 && fridges.size()!=0){
                 Fridge temp= fridges.pop();
-                System.out.print(" "+temp.getCode()+"-"+temp.getData()+",");
+                System.out.println("The code is: "+ temp.getCode()+"and the data: "+temp.getData());
+                System.out.println("--------------------------");
                 n--;
             }
         }

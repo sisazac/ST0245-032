@@ -10,6 +10,7 @@ public class Mall
 {
     static Stack<Fridge> fridges=new Stack<>();
     static Queue<Order> orders=new LinkedList();
+    static int size= orders.size();
     public static void addFridge(Fridge fridge){
         fridges.push(fridge);
     }
@@ -19,7 +20,6 @@ public class Mall
     }
 
     public static void service(){
-        int size=orders.size();
         for(int i=0;i<size;i++){
             Order order = orders.remove();
             int n=order.getNumber();

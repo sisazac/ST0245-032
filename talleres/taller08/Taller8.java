@@ -3,7 +3,7 @@ import java.util.*;
 
 
 /* Title: Polish Calculator
-     * Authosr: Lalinde, Juliana and Urrego, Isabel
+     * Authors: Lalinde, Juliana and Urrego, Isabel
      * Date: September 26, 2018
      * Taken from:https://github.com/julianalalindev/ST0245-032/blob/master/talleres/taller08/Taller8.java
      */

@@ -51,14 +51,14 @@ public class LinkedListMauricio{
             if(index==0){
                 Node temp= first.next;
                 Node new1= new Node(data);
-                new1.next = temp;
+                temp.prev = new1;
                 first= new1;
                 size++;
             }else if(index>0){
                 Node temp= getNode(index-1);
                 Node new1= new Node(data);
-                new1.next= temp.next;
                 temp.next= new1;
+                new1.prev= temp;
                 size++;
             }
         }catch(Exception e){
@@ -70,16 +70,17 @@ public class LinkedListMauricio{
         try{
             if(index==size){
                 Node temp= getNode(index-1);
-                temp= null;
+                temp.prev.next= null;
                 size--;
             }else if (index==0){
                 Node temp= first.next;
                 first= temp;
+                first.prev=null;
                 size--;
-            }else if(index>0 && index<size){
+            }else if(index>0 && index<size-1){
                 Node temp= getNode(index-1);
-                Node temp2= getNode(index+1);
-                temp.next= temp2;
+                temp.prev.next= temp.next;
+                temp.next.prev=temp.prev;
                 size--;
             }
         }catch(Exception e){

@@ -12,7 +12,7 @@ public class text_array
         boolean start= true;
         int index=0;
         String newString="";
-        for(int i=0;i<str.length()-1;i++){
+        for(int i=0;i<str.length();i++){
             if(str.substring(i,i+1).equals("[")){
                 start=true;
                 index=0;

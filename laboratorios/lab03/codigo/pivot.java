@@ -8,7 +8,7 @@ import java.util.*;
 public class pivot
 {
     static int size;
-   public static void PosicionOptima(LinkedList<Integer>a, int data){
+   public static void PosicionOptima(List<Integer>a, int data){
         System.out.println("La lista es: " + a);
         int count=0;
         for(int i=0; i<=size; i++){

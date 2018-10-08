@@ -1,14 +1,14 @@
 import java.util.*;
 
 /* Title: PosicionOptima
-     * Authors: Arango, Isabella and Rengifo, Juan David
-     * Date: October 7, 2018
-     * Taken from:https:https://github.com/iarangor1/ST0245-032/blob/master/laboratorios/lab03/codigo/Lab03.java
-     */
+ * Authors: Arango, Isabella and Rengifo, Juan David
+ * Date: October 7, 2018
+ * Taken from:https:https://github.com/iarangor1/ST0245-032/blob/master/laboratorios/lab03/codigo/Lab03.java
+ */
 public class pivot
 {
-    static int size;
-   public static void PosicionOptima(List<Integer>a, int data){
+    public static void PosicionOptima(List<Integer> a, int data){
+        int size= a.size();
         System.out.println("La lista es: " + a);
         int count=0;
         for(int i=0; i<=size; i++){

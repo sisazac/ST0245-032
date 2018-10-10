@@ -7,7 +7,6 @@
  * @author Mauricio Toro, Andres Paez
  *
  */
-
 public class BinaryTree {
     // Sirve como raíz del árbol
     public Node root;
@@ -30,10 +29,9 @@ public class BinaryTree {
         if(n<node.data && node.left==null){
             Node left= new Node(n);
             node.left=left;
-        }else{
+        }else if(n<node.data){
             insertarAux(node.left, n);
-        }
-        if(n>node.data && node.right==null){
+        }else if(n>node.data && node.right==null){
             Node right= new Node(n);
             node.right=right;
         }else{
@@ -57,14 +55,15 @@ public class BinaryTree {
      * Inserta un dato respetando claro las desigualdades en el árbol
      * @return true si se encuentra el elemento en el árbol, false de lo contrario
      */ 
-
     private boolean buscarAux(Node node, int n) {
         if(node.data==n){
             return true;
         }
+        
         if(node==null){
             return false;
         }
+        
         if(n>node.data){
             return buscarAux(node.right, n);
         }else{
@@ -90,12 +89,10 @@ public class BinaryTree {
     //private Node borrarAux(Node node, int n) {
         //..
     //}
-
     /*
     Los metodos posteriores son para imprimir el arbol de manera
     que sirven para debuggeo
      */
-
     /**
      * @param node el nodo desde el cual se imprimirá
      * imprime el arbol desde el nodo node

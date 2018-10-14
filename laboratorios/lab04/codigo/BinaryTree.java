@@ -1,6 +1,8 @@
 public class BinaryTree {
     public Node root;
-    public Node family;
+    public Node relative;
+    public Node left;
+    public Node right;
     public BinaryTree(){
         root = null;
     }
@@ -8,20 +10,43 @@ public class BinaryTree {
     private int max2(int i, int j)
     {
         if (i > j)
-         return i;
+            return i;
         return j;
     }
 
-    public void search(Node node, String name){
+    public Node search(Node node, String name){
         if(node != null){
+            return null;
+        }else{
             if(node.data.equals(name)){
-                family = node;
+                return node;
             }
+            left=search(node.left, name);
+            if(left!=null){
+                return left;
+            }
+            right=search(node.right,name);
+            if(right!=null){
+                return right;   
+            }
+            return null;
         }
-        search(node.left, name);
-        search(node.right, name);
     }
+
     
+    /*public String grandma(String name){
+      *  Node relative= search(root, name);
+      *  if(relative!=null){
+      *      relative=relative.left;
+      *      if(relative!=null){
+      *          if(relative!=null){
+      *              relative=relative.;
+      *         }
+      *      }
+      *      
+      *  }
+      */
+
     private int maxheightAUX(Node node)
     {
         if (node == null)

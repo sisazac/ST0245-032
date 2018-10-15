@@ -14,38 +14,17 @@ public class BinaryTree {
         return j;
     }
 
-    public Node search(Node node, String name){
-        if(node != null){
-            return null;
-        }else{
+    public String search(Node node, String name){
+        if(node!= null){
             if(node.data.equals(name)){
-                return node;
+                if(node.left.left!= null) return node.left.left.data;
+            }else{
+                search(node.left,name);
+                search(node.right,name);
             }
-            left=search(node.left, name);
-            if(left!=null){
-                return left;
-            }
-            right=search(node.right,name);
-            if(right!=null){
-                return right;   
-            }
-            return null;
         }
+        return "Not found";
     }
-
-    
-    /*public String grandma(String name){
-      *  Node relative= search(root, name);
-      *  if(relative!=null){
-      *      relative=relative.left;
-      *      if(relative!=null){
-      *          if(relative!=null){
-      *              relative=relative.;
-      *         }
-      *      }
-      *      
-      *  }
-      */
 
     private int maxheightAUX(Node node)
     {

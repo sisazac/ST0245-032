@@ -1,9 +1,9 @@
-
 import java.util.ArrayList;
+
 /**
  * Abstract class for implementations of Digraphs
  * 
- * @author Hamilton Gomez & Santiago Isaza- Plantilla de Mauricio Toro
+ * @author Hamilton Gómez and Santiago Isaza-Mauricio Toro’s Template
  * @version 1
  */
 public abstract class Graph
@@ -13,9 +13,13 @@ public abstract class Graph
    {
        size = vertices;
    }
+
    public  abstract void addArc(int source, int destination, int weight);
+
    public abstract ArrayList<Integer> getSuccessors(int vertice);
+
    public abstract int getWeight(int source, int destination);
+
    public  int size() {
        return size;
     }

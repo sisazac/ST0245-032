@@ -1,8 +1,8 @@
 import java.util.ArrayList;
+
 /**
- * Esta clase es una implementación de un digrafo usando matrices de adyacencia
- * 
- * @author Hamilton Gmez & Santiago Isaza- Plantilla de Mauricio Toro 
+ * This class is an implementation of digraphs using adjacency matrix
+ * @author Hamilton Gómez and Santiago Isaza-Mauricio Toro’s Template
  * @version 1
  */
 public class DigraphAM extends Graph
@@ -13,6 +13,7 @@ public class DigraphAM extends Graph
         super(size);
         matriz = new int[size][size];
     }
+
     public int getWeight(int source, int destination)
     {
         return matriz[source][destination];

@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import javafx.util.Pair;
+
 /**
- * Esta clase es una implementación de un digrafo usando listas de adyacencia
+ * This class is an implementation of digraphs using adjacency lists
  * 
- * @author Hamilton Gomez & Santiago Isaza
- * - Tomado del repositorio de Isabela Arango
- * - Plantilla de Mauricio Toro
+ * @author Hamilton Gómez and Santiago Isaza
+ * -Taken from: https://github.com/iarangor1/ST0245-032/blob/master/talleres/taller11/DigraphAL.java
+ * Authors: Arango, Isabella and Rengifo, Juan David
+ * - Mauricio Toro’s Template
  * @version 1
  */
 public class DigraphAL extends Graph
 {
-
-    ArrayList<LinkedList<Pareja>> list = new ArrayList<>();
-    
+    ArrayList<LinkedList<Pair1>> list = new ArrayList<>();
     public DigraphAL(int size)
     {
         super(size);
@@ -23,19 +23,21 @@ public class DigraphAL extends Graph
     }
 
     public void addArc(int source, int destination, int weight)
+
     {
-        Pareja pair = new Pareja(destination, weight);
-        LinkedList<Pareja> a = list.get(source);
+        Pair1 pair = new Pair1(destination, weight);
+        LinkedList<Pair1> a = list.get(source);
         a.add(pair);
         list.add(source, a);
     }
 
     public int getWeight(int source, int destination)
+
     {
-        LinkedList<Pareja> a = list.get(source);
+        LinkedList<Pair1> a = list.get(source);
         for(int i=0;i<a.size();i++){
             if(a.get(i).vertice == destination){
-                return a.get(i).peso;
+                return a.get(i).weight;
             }
             break;
         }
@@ -44,13 +46,13 @@ public class DigraphAL extends Graph
 
     public ArrayList<Integer> getSuccessors(int vertice)
     {
-        LinkedList<Pareja> a = list.get(vertice);
-        ArrayList<Integer>sucesores = new ArrayList<>();
+        LinkedList<Pair1> a = list.get(vertice);
+        ArrayList<Integer>successors = new ArrayList<>();
         for(int i=0; i<a.size();i++){
-            if(a.get(i).peso!=0){
-                sucesores.add(a.get(i).vertice);
+            if(a.get(i).weight!=0){
+                successors.add(a.get(i).vertice);
             }
         }
-        return sucesores;
+        return successors;
     }
 }

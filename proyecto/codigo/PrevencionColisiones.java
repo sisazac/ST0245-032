@@ -130,9 +130,10 @@ public class PrevencionColisiones
             if(z>0)z--;
             if(conjuntoDeAbejas[x][y][z]== null){
                 Stack<Abeja> colision= new Stack<>();
-                colision.add(aux);
+                colision.push(aux);
+                conjuntoDeAbejas[x][y][z]=colision;
             }else{
-                conjuntoDeAbejas[x][y][z].add(aux);
+                conjuntoDeAbejas[x][y][z].push(aux);
             }
         }
     } 
@@ -146,6 +147,7 @@ public class PrevencionColisiones
         while(colision.empty()!=true){
             imprimirPila(colision);
         }
+
     }
 
     /**Metodo para imprimir las respuestas
@@ -155,11 +157,11 @@ public class PrevencionColisiones
 
     public static void imprimirResultado(){
         System.out.println("Coordenadas de abejas que colisionan");
-        System.out.println("Coordenada x     " + "Coordenada y     "+ "Coordenada z"+ "\n");
-        for(int i=0;i< 1;i++){
-            for(int j=0;j< 1;j++){
-                for(int k=0;k<1;k++){
-                    if(conjuntoDeAbejas[i][j][k]!=null){
+        System.out.println("Coordenada x       " + "Coordenada y      "+ "Coordenada z"+ "\n");
+        for(int i=0;i< conjuntoDeAbejas.length;i++){
+            for(int j=0;j< conjuntoDeAbejas[1].length;j++){
+                for(int k=0;k<conjuntoDeAbejas[1][1].length;k++){
+                    if(conjuntoDeAbejas[i][j][k]!=null && conjuntoDeAbejas[i][j][k].size()>1){
                         imprimirPila(conjuntoDeAbejas[i][j][k]);
                     }
                 }

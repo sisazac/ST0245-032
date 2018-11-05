@@ -9,8 +9,13 @@ public class Main
 {
     public static void main (String [] args){
         PrevencionColisiones colisiones= new PrevencionColisiones();
-        colisiones.tamaño(colisiones.leerArchivo(4));
+        colisiones.tamaño(colisiones.leerArchivo(100));
         colisiones.detectarColisiones(colisiones.arregloDeAbejas);
         colisiones.imprimirResultado();
+        //colisiones.guardarArchivo(100);
+        //prueba colisiones= new prueba();
+        //colisiones.tamaño(colisiones.leerArchivo(100));
+        //colisiones.detectarColisiones(colisiones.arregloDeAbejas);
+        //colisiones.imprimirResultado();
     }
 }

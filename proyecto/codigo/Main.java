@@ -1,3 +1,4 @@
+import java.util.*;
 
 /**
  * Write a description of class Main here.
@@ -9,10 +10,11 @@ public class Main
 {
     public static void main (String [] args){
         PrevencionColisiones colisiones= new PrevencionColisiones();
-        colisiones.tamaño(colisiones.leerArchivo(100));
+        colisiones.tamaño(colisiones.leerArchivo(1000));
+        long startTime = System.currentTimeMillis();
         colisiones.detectarColisiones(colisiones.arregloDeAbejas);
-        colisiones.imprimirResultado();
-        //colisiones.guardarArchivo(100);
-        
+        long estimatedTime = System.currentTimeMillis() - startTime;
+        System.out.println("El algoritmo tomo un tiempo de: "+estimatedTime+" ms");
+        //colisiones.imprimirResultado();
     }
 }

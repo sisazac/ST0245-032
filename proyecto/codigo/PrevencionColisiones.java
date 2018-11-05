@@ -25,25 +25,7 @@ public class PrevencionColisiones
     static double AuxminY;
     static double AuxminZ;
     static int cont=1;
-    /**
-     * Metodo para aproximar la distancia entre dos abejas roboticas
-     *
-     * @param  abeja1  la primera abeja
-     * @param  abeja2  la segunda abeja
-     * @return la distancia aproximada entre las dos abejas, aproximando 1 grado como 111111 metros
-     */
-    /*public static double distancia(Point3D abeja1, Point3D abeja2){
-    return Math.sqrt(  Math.pow((abeja1.getX() - abeja2.getX())*111111,2) +
-    Math.pow((abeja1.getY() - abeja2.getY())*111111,2) +
-    Math.pow(abeja1.getZ() - abeja2.getZ(),2)
-    );
-    }*/
-    /**
-     * Metodo para leer un archivo de abejas y almacenarlas en un arreglo de puntos en 3D
-     *
-     * @param  numeroDeAbejas  El numero de abejas a leer
-     * @return un arreglo de puntos 3D donde cada elemento representa las coordenadas de una abeja
-     */
+    
 
     public static Abeja[] leerArchivo(int numeroDeAbejas){
         final String nombreDelArchivo = "ConjuntoDeDatosCon"+numeroDeAbejas+"abejas.txt";
@@ -101,7 +83,6 @@ public class PrevencionColisiones
         double deltaZ= (AuxmaxZ-AuxminZ)/ (50* Math.sqrt(2));
 
         xl= (int)deltaX;
-        //System.out.println(xl);
         yl= (int)deltaY;
         zl=(int)deltaZ;
         if(xl==0)xl=1;
@@ -219,7 +200,7 @@ public class PrevencionColisiones
     }
     
     /*Metodo para imprimir las respuestas
-     * 
+     * ESTE CÓDIGO ERA EL INTENTO DE ANALIZAR TODOS LOS CUADROS ALEDAÑOS, GENERA MUCHAS RESPUES INCORRECTAS
      * 
      
 
@@ -274,8 +255,8 @@ public class PrevencionColisiones
     }*/
 
 
-    /** Metodo para imprimir pila2
-     * 
+    /** Metodo para imprimir los resultamos en un archivo
+     * SIN TERMINAR
      */
     public static void imprimirPila2(Stack <Abeja> colision, PrintWriter escritor){
         Abeja aux= colision.pop();

@@ -25,7 +25,25 @@ public class PrevencionColisiones
     static double AuxminY;
     static double AuxminZ;
     static int cont=1;
-    
+    /**
+     * Metodo para aproximar la distancia entre dos abejas roboticas
+     *
+     * @param  abeja1  la primera abeja
+     * @param  abeja2  la segunda abeja
+     * @return la distancia aproximada entre las dos abejas, aproximando 1 grado como 111111 metros
+     */
+    /*public static double distancia(Point3D abeja1, Point3D abeja2){
+    return Math.sqrt(  Math.pow((abeja1.getX() - abeja2.getX())*111111,2) +
+    Math.pow((abeja1.getY() - abeja2.getY())*111111,2) +
+    Math.pow(abeja1.getZ() - abeja2.getZ(),2)
+    );
+    }*/
+    /**
+     * Metodo para leer un archivo de abejas y almacenarlas en un arreglo de puntos en 3D
+     *
+     * @param  numeroDeAbejas  El numero de abejas a leer
+     * @return un arreglo de puntos 3D donde cada elemento representa las coordenadas de una abeja
+     */
 
     public static Abeja[] leerArchivo(int numeroDeAbejas){
         final String nombreDelArchivo = "ConjuntoDeDatosCon"+numeroDeAbejas+"abejas.txt";
@@ -78,11 +96,12 @@ public class PrevencionColisiones
                 AuxmaxZ=arregloDeAbejas[i].getZ();
             } 
         }
-         double deltaX= ( (AuxmaxX-AuxminX)*111111)/ (50* Math.sqrt(2));
-        double deltaY= ( (AuxmaxY-AuxminY)*111111)/ (50* Math.sqrt(2));
-        double deltaZ= (AuxmaxZ-AuxminZ)/ (50* Math.sqrt(2));
-
+        double deltaX= ( (AuxmaxX-AuxminX)*111111)/ (100/(Math.sqrt(3)));
+        double deltaY= ( (AuxmaxY-AuxminY)*111111)/ (100/(Math.sqrt(3)));
+        double deltaZ= (AuxmaxZ-AuxminZ)/ (100/(Math.sqrt(3)));
+        double auxlado=(50* Math.sqrt(2));
         xl= (int)deltaX;
+        //System.out.println(xl);
         yl= (int)deltaY;
         zl=(int)deltaZ;
         if(xl==0)xl=1;
@@ -105,9 +124,9 @@ public class PrevencionColisiones
         for (int i = 0; i < arregloDeAbejas.length ; ++i)
         {
             aux = arregloDeAbejas[i];
-            x = (int)( ( (aux.getX()-AuxminX)*111111)/ (50* Math.sqrt(2)) );
-            y = (int)( ( (aux.getY()-AuxminY) *111111) / (50* Math.sqrt(2)));
-            z = (int)((aux.getZ()-AuxminZ) / (50* Math.sqrt(2)));
+            x = (int)( ( (aux.getX()-AuxminX)*111111)/ (100/(Math.sqrt(3))) );
+            y = (int)( ( (aux.getY()-AuxminY) *111111) / (100/(Math.sqrt(3))));
+            z = (int)((aux.getZ()-AuxminZ) / (100/(Math.sqrt(3))));
             if(x>0)x--;
             if(y>0)y--;
             if(z>0)z--;
@@ -133,9 +152,8 @@ public class PrevencionColisiones
         }
 
     }
-    
+
     /**Metodo para imprimir las respuestas
-     * 
      * 
      */
 
@@ -145,118 +163,55 @@ public class PrevencionColisiones
         for(int i=0;i< conjuntoDeAbejas.length;i++){
             for(int j=0;j< conjuntoDeAbejas[0].length;j++){
                 for(int k=0;k<conjuntoDeAbejas[0][0].length;k++){
-                    if(conjuntoDeAbejas[i][j][k]!=null && conjuntoDeAbejas[i][j][k].size()==1){
-                        if(i>0 && conjuntoDeAbejas[i-1][j][k]!=null && conjuntoDeAbejas[i-1][j][k].size()==1){
-                            Stack<Abeja> aux = conjuntoDeAbejas[i-1][j][k];
-                            Abeja aux2= aux.peek();
-                            System.out.println("["+ (i-1) +"]" + "["+ j +"]" + "[" + k + "]"+ "\n");
-                            System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
-                            cont++;
-                        }
-                        if(i< conjuntoDeAbejas.length-1 && conjuntoDeAbejas[i+1][j][k]!=null && conjuntoDeAbejas[i+1][j][k].size()==1){
-                            Stack<Abeja> aux = conjuntoDeAbejas[i+1][j][k];
-                            Abeja aux2= aux.peek();
-                            System.out.println("["+ (i+1) +"]" + "["+ j +"]" + "[" + k + "]"+ "\n");
-                            System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
-                            cont++;
-                        }
-                        if(j>0 && conjuntoDeAbejas[i][j-1][k]!=null && conjuntoDeAbejas[i][j-1][k].size()==1){
-                            Stack<Abeja> aux = conjuntoDeAbejas[i][j-1][k];
-                            Abeja aux2= aux.peek();
-                            System.out.println("["+ (i) +"]" + "["+ (j-1) +"]" + "[" + k + "]"+ "\n");
-                            System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
-                            cont++;
-                        }
-                        if(j<conjuntoDeAbejas[1].length-1 && conjuntoDeAbejas[i][j+1][k]!=null && conjuntoDeAbejas[i][j+1][k].size()==1){
-                            Stack<Abeja> aux = conjuntoDeAbejas[i][j+1][k];
-                            Abeja aux2= aux.peek();
-                            System.out.println("["+ (i) +"]" + "["+ (j+1) +"]" + "[" + k + "]"+ "\n");
-                            System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
-                            cont++;
-                        }
-                        if(k>0 && conjuntoDeAbejas[i][j][k-1]!=null && conjuntoDeAbejas[i][j][k-1].size()==1){
-                            Stack<Abeja> aux = conjuntoDeAbejas[i][j][k-1];
-                            Abeja aux2= aux.peek();
-                            System.out.println("["+ (i) +"]" + "["+ j +"]" + "[" + (k-1) + "]" + "\n");
-                            System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
-                            cont++;
-                        }
-                        if(k< conjuntoDeAbejas[1][1].length-1 && conjuntoDeAbejas[i][j][k+1]!=null && conjuntoDeAbejas[i][j][k+1].size()==1){
-                            Stack<Abeja> aux = conjuntoDeAbejas[i][j][k+1];
-                            Abeja aux2= aux.peek();
-                            System.out.println("["+ (i) +"]" + "["+ j +"]" + "[" + (k+1) + "]"+ "\n");
-                            System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
-                            cont++;
-                        }
-                    }
-                    if(conjuntoDeAbejas[i][j][k]!=null && conjuntoDeAbejas[i][j][k].size()>1){
-                        System.out.println("["+ (i) +"]" + "["+ j +"]" + "[" + k + "]"+ "\n");
-                        imprimirPila(conjuntoDeAbejas[i][j][k]);
-                    }
-                }
-            }
-        }
-
-    }
-    
-    /*Metodo para imprimir las respuestas
-     * ESTE CÓDIGO ERA EL INTENTO DE ANALIZAR TODOS LOS CUADROS ALEDAÑOS, GENERA MUCHAS RESPUES INCORRECTAS
-     * 
-     
-
-    public static void imprimirResultado(){
-        System.out.println("Coordenadas de abejas que colisionan");
-        System.out.println("Coordenada x       " + "Coordenada y      "+ "Coordenada z"+ "\n");
-        for(int i=0;i< conjuntoDeAbejas.length;i++){
-            for(int j=0;j< conjuntoDeAbejas[0].length;j++){
-                for(int k=0;k<conjuntoDeAbejas[0][0].length;k++){
-                  if(i>0 && J>0 && Z>0){
-                    if(i<conjuntoDeAbejas.length-1 && j<conjuntoDeAbejas[0].length-1 && k<conjuntoDeAbejas[0][0].length-1){}
-                      if(conjuntoDeAbejas[i][j][k]!=null && conjuntoDeAbejas[i][j][k].size()==1){
-                        int x= i-1;
-                        int y= j-1;
-                        int z= k-1;
-                        while(x<=i+1){
-                          while(y<=j+1){
-                            while(z<= k+1){
-                              if(conjuntoDeAbejas[x][y][z]!=null && conjuntoDeAbejas[x][y][z].size()==1){
-                                Stack<Abeja> aux = conjuntoDeAbejas[x][y][z];
-                                Abeja aux2= aux.pop();
-                                System.out.println("["+ (i-1) +"]" + "["+ j +"]" + "[" + k + "]"+ "\n");
-                                System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
-                                cont++;
-                              }
-                              z++;
+                    if(i>0 && j>0 && k>0){
+                        if(i<conjuntoDeAbejas.length-1 && j<conjuntoDeAbejas[0].length-1 && k<conjuntoDeAbejas[0][0].length-1){
+                            if(conjuntoDeAbejas[i][j][k]!=null && conjuntoDeAbejas[i][j][k].size()==1){
+                                int cont2= 0;
+                                int x= i-1;
+                                while(x<=i+1){
+                                    int y= j-1;
+                                    while(y<=j+1){
+                                        int z= k-1;
+                                        while(z<= k+1){
+                                            if(conjuntoDeAbejas[x][y][z]!=conjuntoDeAbejas[i][j][k]){
+                                                if(conjuntoDeAbejas[x][y][z]!=null && conjuntoDeAbejas[x][y][z].size()==1){
+                                                    Stack<Abeja> aux = conjuntoDeAbejas[x][y][z];
+                                                    Abeja aux2= aux.pop();
+                                                    System.out.println("["+ x +"]" + "["+ y +"]" + "[" + z + "]"+ "\n");
+                                                    System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
+                                                    cont++;
+                                                    cont2++;
+                                                }
+                                            }
+                                            z++;
+                                        }
+                                        y++;
+                                    }
+                                    x++;
+                                }
+                                if(cont2!=0){
+                                    Stack<Abeja> aux = conjuntoDeAbejas[i][j][k];
+                                    Abeja aux2= aux.pop();
+                                    System.out.println("["+ i +"]" + "["+ j +"]" + "[" + k + "]"+ "\n");
+                                    System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
+                                    cont++;
+                                    cont2=0;
+                                }
                             }
-                            y++;
-                          }
-                          x++;
                         }
-                      }
-                    }
-                  }	
-                        
-                          
-                          
-                          
-                          
-                            
-                        }
-                        
-                    }
+                    }	
                     if(conjuntoDeAbejas[i][j][k]!=null && conjuntoDeAbejas[i][j][k].size()>1){
                         System.out.println("["+ (i) +"]" + "["+ j +"]" + "[" + k + "]"+ "\n");
                         imprimirPila(conjuntoDeAbejas[i][j][k]);
                     }
                 }
             }
+
         }
+    }
 
-    }*/
-
-
-    /** Metodo para imprimir los resultamos en un archivo
-     * SIN TERMINAR
+    /** Metodo para imprimir pila2
+     * 
      */
     public static void imprimirPila2(Stack <Abeja> colision, PrintWriter escritor){
         Abeja aux= colision.pop();

@@ -1,10 +1,10 @@
 import java.util.*;
 
 /**
- * Write a description of class Main here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Clase Main
+ * 
+ * @author Santiago Isaza Cadavid and Hamilton Smith Gómez Osorio
+ * @version Octubre 2018
  */
 public class Main
 {
@@ -27,3 +27,4 @@ public class Main
 
     }
 }
+   

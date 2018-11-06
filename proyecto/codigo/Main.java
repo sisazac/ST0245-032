@@ -24,12 +24,6 @@ public class Main
         colisiones.guardarArchivo(1000000);
         long estimatedTime1 = System.currentTimeMillis() - startTime1;
         System.out.println("El algoritmo guardarArchivo tomo un tiempo de: "+estimatedTime1+" ms");
-        
-        //colisiones.imprimirResultado();
-        
-        //prueba colisiones= new prueba();
-        //colisiones.tamaño(colisiones.leerArchivo(10));
-        //colisiones.detectarColisiones(colisiones.arregloDeAbejas);
-        //colisiones.imprimirResultado();
+
     }
 }

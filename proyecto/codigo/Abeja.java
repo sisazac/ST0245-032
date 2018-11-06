@@ -1,3 +1,9 @@
+/**
+ * Clase prevencion de colisiones
+ * 
+ * @author Santiago Isaza Cadavid and Hamilton Smith Gómez Osorio
+ * @version Octubre 2018
+ */
 public class Abeja {
     Double x;
     Double y;

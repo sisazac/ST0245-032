@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
@@ -55,7 +56,12 @@ public class PrevencionColisiones
         }
         return arregloDeAbejas;
     }
-
+    
+    
+    /**
+     * Metodo para definir el area de ubicacion de las abejas
+     * @param arregloDeAbejas  numero total de abejas de abejas organizadas
+     */
     public  void areaDeUbicacion (Abeja[] arregloDeAbejas){
         AuxminX= arregloDeAbejas[0].getX();
         AuxminY= arregloDeAbejas[0].getY();
@@ -101,7 +107,6 @@ public class PrevencionColisiones
      * Algoritmo para prevenir colisiones (genera muchas respuestas repetidas)
      *
      * @param  arregloDeAbejas  Un arreglo con coordenadas de las abejas
-     * @return una lista definida con arreglos con las abejas que tienen riesgo de colision
      */
     public  void detectarColisiones(Abeja[] arregloDeAbejas){
         Abeja aux = null;
@@ -173,7 +178,8 @@ public class PrevencionColisiones
     }
 
     /** Metodo para imprimir pila2
-     * 
+     * @param Colision Pila de abejas que colisionan
+     * @param PrintWriter escritor para guardar el archivo
      */
     public  void imprimirPila(Stack <Abeja> colision, PrintWriter escritor){
         Abeja aux= colision.pop();
@@ -188,7 +194,6 @@ public class PrevencionColisiones
     /**
      * Metodo para escribir un archivo con la respuesta
      *
-     * @param  abejasConRiesgoDeColision  Lista definida con arreglos con las abejas con riesgo de colision
      * @param  numeroDeAbejas  Numero de abejas del conjunto de datos original
      */
 

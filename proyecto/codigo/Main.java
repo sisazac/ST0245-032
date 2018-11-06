@@ -15,12 +15,7 @@ public class Main
         colisiones.detectarColisiones(colisiones.arregloDeAbejas);
         long estimatedTime = System.currentTimeMillis() - startTime;
         System.out.println("El algoritmo tomo un tiempo de: "+estimatedTime+" ms");
-        //colisiones.guardarArchivo(1000000);
-        //colisiones.imprimirResultado();
+        colisiones.guardarArchivo(1000000);
         
-        //prueba colisiones= new prueba();
-        //colisiones.tamaño(colisiones.leerArchivo(10));
-        //colisiones.detectarColisiones(colisiones.arregloDeAbejas);
-        //colisiones.imprimirResultado();
     }
 }

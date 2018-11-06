@@ -7,12 +7,10 @@ import java.util.*;
 import java.lang.Math;
 
 /**
- * Implementacion de un algoritmo para prevenir Colisiones
- * Estructura de datos utilizada: Arreglos
- * Complejidad: Peor Caso O(n al cubo) y Mejor caso O(n al cuadrado)
- *
- * @author Mauricio Toro
- * @version 1
+ * Clase prevencion de colisiones
+ * 
+ * @author Santiago Isaza Cadavid and Hamilton Smith Gómez Osorio
+ * @version Octubre 2018
  */
 public class PrevencionColisiones
 {

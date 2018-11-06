@@ -16,28 +16,17 @@ import java.lang.Math;
  */
 public class PrevencionColisiones
 {
-    static Stack [][][] conjuntoDeAbejas;
-    static Abeja[] arregloDeAbejas;
-    static int xl = 0;
-    static int yl = 0;
-    static int zl = 0;
-    static double AuxminX;
-    static double AuxminY;
-    static double AuxminZ;
-    static int cont=1;
-    /**
-     * Metodo para aproximar la distancia entre dos abejas roboticas
-     *
-     * @param  abeja1  la primera abeja
-     * @param  abeja2  la segunda abeja
-     * @return la distancia aproximada entre las dos abejas, aproximando 1 grado como 111111 metros
-     */
-    /*public static double distancia(Point3D abeja1, Point3D abeja2){
-    return Math.sqrt(  Math.pow((abeja1.getX() - abeja2.getX())*111111,2) +
-    Math.pow((abeja1.getY() - abeja2.getY())*111111,2) +
-    Math.pow(abeja1.getZ() - abeja2.getZ(),2)
-    );
-    }*/
+    Stack<Abeja> [][][] conjuntoDeAbejas;
+    Abeja[] arregloDeAbejas;
+    int xl = 0;
+    int yl = 0;
+    int zl = 0;
+    double AuxminX;
+    double AuxminY;
+    double AuxminZ;
+    int cont=1;
+    ArrayList<Abeja> adyacentes;
+    
     /**
      * Metodo para leer un archivo de abejas y almacenarlas en un arreglo de puntos en 3D
      *
@@ -45,7 +34,7 @@ public class PrevencionColisiones
      * @return un arreglo de puntos 3D donde cada elemento representa las coordenadas de una abeja
      */
 
-    public static Abeja[] leerArchivo(int numeroDeAbejas){
+    public  Abeja[] leerArchivo(int numeroDeAbejas){
         final String nombreDelArchivo = "ConjuntoDeDatosCon"+numeroDeAbejas+"abejas.txt";
         arregloDeAbejas = new Abeja[numeroDeAbejas];
         try {            
@@ -69,7 +58,7 @@ public class PrevencionColisiones
         return arregloDeAbejas;
     }
 
-    public static void tamaño (Abeja[] arregloDeAbejas){
+    public  void areaDeUbicacion (Abeja[] arregloDeAbejas){
         AuxminX= arregloDeAbejas[0].getX();
         AuxminY= arregloDeAbejas[0].getY();
         AuxminZ= arregloDeAbejas[0].getZ();
@@ -116,7 +105,7 @@ public class PrevencionColisiones
      * @param  arregloDeAbejas  Un arreglo con coordenadas de las abejas
      * @return una lista definida con arreglos con las abejas que tienen riesgo de colision
      */
-    public static void detectarColisiones(Abeja[] arregloDeAbejas){
+    public  void detectarColisiones(Abeja[] arregloDeAbejas){
         Abeja aux = null;
         int x;
         int y;
@@ -138,28 +127,14 @@ public class PrevencionColisiones
                 conjuntoDeAbejas[x][y][z].push(aux);
             }
         }
+        abejasAdyacentes();
     } 
 
-    /** Metodo para imprimir pila
+    /** Metodo para encontrar abejas adyacentes
      * 
      */
-    public static void imprimirPila(Stack <Abeja> colision){
-        Abeja aux= colision.pop();
-        System.out.println(cont + " " +aux.getX() + "     " + aux.getY() + "     " + aux.getZ()+ "\n");
-        cont++;
-        if(colision.empty()!=true){
-            imprimirPila(colision);
-        }
-
-    }
-
-    /**Metodo para imprimir las respuestas
-     * 
-     */
-
-    public static void imprimirResultado(){
-        System.out.println("Coordenadas de abejas que colisionan");
-        System.out.println("Coordenada x       " + "Coordenada y      "+ "Coordenada z"+ "\n");
+    public  void abejasAdyacentes(){
+        adyacentes= new ArrayList<>();
         for(int i=0;i< conjuntoDeAbejas.length;i++){
             for(int j=0;j< conjuntoDeAbejas[0].length;j++){
                 for(int k=0;k<conjuntoDeAbejas[0][0].length;k++){
@@ -175,11 +150,7 @@ public class PrevencionColisiones
                                         while(z<= k+1){
                                             if(conjuntoDeAbejas[x][y][z]!=conjuntoDeAbejas[i][j][k]){
                                                 if(conjuntoDeAbejas[x][y][z]!=null && conjuntoDeAbejas[x][y][z].size()==1){
-                                                    Stack<Abeja> aux = conjuntoDeAbejas[x][y][z];
-                                                    Abeja aux2= aux.pop();
-                                                    System.out.println("["+ x +"]" + "["+ y +"]" + "[" + z + "]"+ "\n");
-                                                    System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
-                                                    cont++;
+                                                    adyacentes.add(conjuntoDeAbejas[x][y][z].pop());
                                                     cont2++;
                                                 }
                                             }
@@ -190,20 +161,13 @@ public class PrevencionColisiones
                                     x++;
                                 }
                                 if(cont2!=0){
-                                    Stack<Abeja> aux = conjuntoDeAbejas[i][j][k];
-                                    Abeja aux2= aux.pop();
-                                    System.out.println("["+ i +"]" + "["+ j +"]" + "[" + k + "]"+ "\n");
-                                    System.out.println(cont + " " +aux2.getX() + "     " + aux2.getY() + "     " + aux2.getZ()+ "\n");
-                                    cont++;
+                                    adyacentes.add(conjuntoDeAbejas[i][j][k].pop());
                                     cont2=0;
                                 }
                             }
                         }
                     }	
-                    if(conjuntoDeAbejas[i][j][k]!=null && conjuntoDeAbejas[i][j][k].size()>1){
-                        System.out.println("["+ (i) +"]" + "["+ j +"]" + "[" + k + "]"+ "\n");
-                        imprimirPila(conjuntoDeAbejas[i][j][k]);
-                    }
+
                 }
             }
 
@@ -213,12 +177,12 @@ public class PrevencionColisiones
     /** Metodo para imprimir pila2
      * 
      */
-    public static void imprimirPila2(Stack <Abeja> colision, PrintWriter escritor){
+    public  void imprimirPila(Stack <Abeja> colision, PrintWriter escritor){
         Abeja aux= colision.pop();
-        escritor.println(cont + " " +aux.getX() + "     " + aux.getY() + "     " + aux.getZ()+ "\n");
+        escritor.println(cont + " " +aux.getX() + "         " + aux.getY() + "         " + aux.getZ()+ "\n");
         cont++;
         if(colision.empty()!=true){
-            imprimirPila2(colision,escritor);
+            imprimirPila(colision,escritor);
         }
 
     }
@@ -230,22 +194,26 @@ public class PrevencionColisiones
      * @param  numeroDeAbejas  Numero de abejas del conjunto de datos original
      */
 
-    public static void guardarArchivo( int numeroDeAbejas){
+    public void guardarArchivo( int numeroDeAbejas){
         final String nombreDelArchivo = "respuestaConjuntoDeDatosCon"+numeroDeAbejas+"abejas.txt";  
-        int cont=1;
         try {
             PrintWriter escritor = new PrintWriter(nombreDelArchivo, "UTF-8");
             escritor.println("Coordenadas de abejas que colisionan");
-            escritor.println("Coordenada x       " + "Coordenada y      "+ "Coordenada z"+ "\n");
+            escritor.println("Coordenada x          " + "Coordenada y          "+ "Coordenada z"+ "\n");
             for(int i=0;i< conjuntoDeAbejas.length;i++){
                 for(int j=0;j< conjuntoDeAbejas[0].length;j++){
                     for(int k=0;k<conjuntoDeAbejas[0][0].length;k++){
                         if(conjuntoDeAbejas[i][j][k]!=null && conjuntoDeAbejas[i][j][k].size()>1){
-                            escritor.println("["+ (i) +"]" + "["+ j +"]" + "[" + k + "]"+ "\n");
-                            imprimirPila2(conjuntoDeAbejas[i][j][k], escritor);
+                            imprimirPila(conjuntoDeAbejas[i][j][k], escritor);
                         }
                     }
                 }
+            }
+            for(int a=0;a<adyacentes.size();a++){
+                Abeja aux= adyacentes.get(a);
+                escritor.println(cont + " " +aux.getX() + "         " + aux.getY() + "         " + aux.getZ()+ "\n");
+                cont++;
+
             }
             escritor.close();
         }
@@ -254,17 +222,4 @@ public class PrevencionColisiones
         } 
     }
 
-    public static void main(String[] args){
-        // Recibir el numero de abejas como parametro
-        final int numeroDeAbejas = args.length == 0 ? 10 : Integer.parseInt(args[0]);
-        // Leer el archivo con las coordenadas de las abejas
-        Abeja[] arregloDeAbejas = leerArchivo(numeroDeAbejas);
-        // Prevenir las colisiones revisando todas con todas
-        long startTime = System.currentTimeMillis();
-        //Abeja[] abejasConRiesgoDeColision = detectarColisiones(arregloDeAbejas);
-        // Guardar en un archivo las abejas con riesgo de colision   
-        long estimatedTime = System.currentTimeMillis() - startTime;
-        System.out.println("El algoritmo tomo un tiempo de: "+estimatedTime+" ms");
-        //guardarArchivo(abejasConRiesgoDeColision, numeroDeAbejas);
-    }
 }
